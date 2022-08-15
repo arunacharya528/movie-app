@@ -7,7 +7,6 @@ export const Home = () => {
     useEffect(() => {
         getMovieList()
             .then(response => {
-                console.log(response.data.data.movies)
                 setMovies({ loading: false, data: response.data.data.movies })
             })
     }, [])

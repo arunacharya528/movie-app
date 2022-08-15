@@ -3,6 +3,7 @@ import './App.css';
 import { Nav } from './components/Nav';
 import { DrawerContext, DrawerProvider } from './context/DrawerContext';
 import { Home } from './pages/Home';
+import { Movie } from './pages/Movie';
 
 function App() {
   return (
@@ -11,7 +12,9 @@ function App() {
         <Nav />
         <div className="container mx-auto">
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" exact element={<Home />} />
+            <Route path="/movie/:id" exact element={<Movie />} />
+
           </Routes>
         </div>
       </DrawerProvider>

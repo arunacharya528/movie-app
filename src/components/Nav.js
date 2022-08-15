@@ -1,8 +1,9 @@
-export const Nav = () => { 
+import { Link } from 'react-router-dom';
+export const Nav = () => {
     return (
         <div class="navbar bg-base-100">
             <div class="flex-1">
-                <a class="btn btn-ghost text-xl uppercase">Movie App</a>
+                <Link class="btn btn-ghost text-xl uppercase" to="/">Movie App</Link>
             </div>
             <div class="flex-none gap-2">
                 <div class="form-control">
