@@ -1,7 +1,7 @@
 import { getData } from "../../data";
 
 export const getMovieDetail = (movieId) => {
-    return getData(`/movie_details.json?movie_id=${movieId}`)
+    return getData(`/movie_details.json?movie_id=${movieId}&with_images=true&with_cast=true`)
 }
 
 export const getRelatedMovie = (movieId) => {
