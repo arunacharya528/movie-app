@@ -11,7 +11,7 @@ export const Home = () => {
             })
     }, [])
     return (
-        <div className="grid grid-cols-5 gap-5">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5 p-5">
             {
                 movies.loading ?
                     "Loading"
