@@ -1,10 +1,17 @@
+import { BrowserRouter,Route,Routes } from 'react-router-dom';
 import './App.css';
+import { Nav } from './components/Nav';
+import { Home } from './pages/Home';
 
 function App() {
   return (
-    <div>
-      <button className="btn btn-primary">Button</button>
-    </div>
+    <BrowserRouter>
+      <Nav/>
+      <Routes>
+        <Route path="/" element={<Home />}>
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
