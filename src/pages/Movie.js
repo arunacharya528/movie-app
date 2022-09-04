@@ -28,10 +28,11 @@ export const Movie = () => {
             {movieDetail.loading ? "Loading" : <MovieDetail />}
             <div>
                 <div className="text-xl font-bold py-5 text-center">Suggested Movies</div>
+                
                 <div className="grid grid-cols-2 items-start gap-5 ">
                     {suggestedMovies.loading ? "Loading" :
 
-                        suggestedMovies.data.map((movie, index) => <Thumbnail movie={movie} key={index} size="small" />)
+                        suggestedMovies.data.map((movie, index) => <Thumbnail movie={movie} key={index} />)
                     }
                 </div>
             </div>
