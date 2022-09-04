@@ -2,10 +2,26 @@ import { useContext } from "react";
 import { SearchContext } from "./SearchContext";
 
 export const SearchBar = () => {
-    const { setGenre, setOrderBy, setQuality, setRating, setSortBy } = useContext(SearchContext)
+    const { setGenre, setOrderBy, setQuality, setRating, setSortBy, setQuery,setPage } = useContext(SearchContext)
+    const clearAll = () => {
+        setGenre(undefined)
+        setOrderBy(undefined)
+        setQuality(undefined)
+        setSortBy(undefined)
+        setQuery(undefined)
+        setPage(1)
+    }
     return (
         <div className="grid md:grid-cols-5 gap-5 p-5">
-
+            <div className="form-control col-span-5 ">
+                <label class="label">
+                    <span class="label-text">Name of the movie</span>
+                </label>
+                <div className="flex space-x-5">
+                    <input type="text" placeholder="Movie Title/IMDb Code, Actor Name/IMDb Code, Director Name/IMDb Code" class="input bg-base-200 rounded-full grow" onChange={e => setQuery(e.target.value)} />
+                    <button className="btn rounded-full btn-primary" onClick={clearAll}>Clear all</button>
+                </div>
+            </div>
             <div class="form-control w-full">
                 <label class="label">
                     <span class="label-text">Quality</span>

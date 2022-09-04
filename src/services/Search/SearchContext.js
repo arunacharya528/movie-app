@@ -7,6 +7,10 @@ export const SearchContext = createContext({
     genre: String,
     sortBy: String,
     orderBy: String,
+    query: String,
+    page: String,
+    setPage: Function,
+    setQuery: Function,
     setQuality: Function,
     setRating: Function,
     setGenre: Function,
@@ -20,7 +24,8 @@ export const SearchProvider = ({ children }) => {
     const [genre, setGenre] = useState(undefined)
     const [sortBy, setSortBy] = useState(undefined)
     const [orderBy, setOrderBy] = useState(undefined)
-
+    const [query, setQuery] = useState(undefined)
+    const [page, setPage] = useState(1)
 
     return <SearchContext.Provider value={{
         quality,
@@ -28,6 +33,10 @@ export const SearchProvider = ({ children }) => {
         genre,
         sortBy,
         orderBy,
+        query,
+        page,
+        setPage,
+        setQuery,
         setQuality,
         setRating,
         setGenre,
