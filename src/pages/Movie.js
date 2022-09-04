@@ -27,18 +27,17 @@ export const Movie = () => {
 
     return (
         <div className="grid lg:grid-cols-2 gap-5">
-            {movieDetail.loading ? <Loading/> : <MovieDetail />}
+            {movieDetail.loading ? <Loading /> : <MovieDetail />}
             <div>
                 <div className="text-xl font-bold py-5 text-center">Suggested Movies</div>
-                
-                <div className="grid grid-cols-2 items-start gap-5 ">
-                    {suggestedMovies.loading ? <Loading/> :
 
-                        suggestedMovies.data.map((movie, index) => <Thumbnail movie={movie} key={index} />)
-                    }
-                </div>
+                {suggestedMovies.loading ? <Loading /> :
+                    <div className="grid md:grid-cols-2 items-start gap-5 ">
+                        {suggestedMovies.data.map((movie, index) => <Thumbnail movie={movie} key={index} />)}
+                    </div>
+                }
             </div>
-            
+
         </div>
     );
 }

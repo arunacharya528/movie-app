@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { useState } from "react";
 import { SearchContext } from "./SearchContext";
 
-export const Pagination = ({ maxValue, perPage }) => {
+export const Pagination = ({ maxValue, perPage, showJump }) => {
     const numberOfTabs = Math.ceil(maxValue / perPage)
     // const [selectedTab, setSelectedTab] = useState(1)
     const { page, setPage } = useContext(SearchContext)
@@ -51,7 +51,7 @@ export const Pagination = ({ maxValue, perPage }) => {
 
     // onChange(page)
     return (
-        <div className="flex space-x-5 justify-center">
+        <div className="flex flex-col space-y-5 justify-center items-center py-10">
             <div className="btn-group">
                 {
                     backwardTabs().map((tab) =>
@@ -64,8 +64,11 @@ export const Pagination = ({ maxValue, perPage }) => {
                     )
                 }
             </div>
-
-            <input type="number" placeholder="Page number" class="input bg-base-200 w-28" onChange={setValue} value={page} />
+            {
+                showJump ?
+                    <input type="number" placeholder="Page number" class="input bg-base-200 w-28" onChange={setValue} value={page} />
+                    : ''
+            }
 
         </div>
 

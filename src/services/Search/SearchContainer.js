@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { useContext } from "react";
+import { Loading } from "../../components/Loading";
 import { getMovieList, Thumbnail } from "../Home";
 import { Pagination } from "./Pagination";
 import { SearchContext } from "./SearchContext";
@@ -10,10 +11,11 @@ export const SearchContainer = () => {
     const initialData = { loading: true, data: [] }
     const [movies, setMovies] = useState(initialData);
     const [movieCount, setMovieCount] = useState(0);
-    // const [page, setPage] = useState(1);
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         // setMovies(initialData)
+        setLoading(true)
         const determineQuery = () => {
             var queries = [];
             queries = quality ? [...queries, ...[`quality=${quality}`]] : queries
@@ -28,29 +30,48 @@ export const SearchContainer = () => {
         getMovieList(determineQuery())
             .then((response) => {
                 const count = response.data.data.movie_count
+                const movies = response.data.data.movies
                 setMovieCount(count)
-                if (count > 0) {
+                if (count > 0 && movies) {
                     setMovies({ loading: false, data: response.data.data.movies })
                 } else {
                     setMovies({ loading: false, data: [] })
                 }
+                setLoading(false)
             })
             .catch((error) => console.log(error))
     }, [quality, genre, rating, orderBy, sortBy, page, query])
 
     return (
         <>
-            <div className="grid grid-cols-4">
+            <Pagination maxValue={movieCount} perPage={20} />
+            <div className="relative">
+
                 {
-                    movies.loading ?
-                        "Loading"
-                        :
-                        movies.data.map((movie, index) =>
-                            <Thumbnail key={index} movie={movie} />
-                        )
+                    movies.loading ? '' :
+                        movies.data.length > 0 ?
+                            <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
+                                {movies.data.map((movie, index) =>
+                                    <Thumbnail key={index} movie={movie} />
+                                )}
+                            </div>
+                            :
+                            <div className="h-80 flex flex-col justify-center items-center space-x-5">
+                                <span className="text-5xl font-semibold py-5">(･_･)</span>
+                                <span>No movie available</span>
+                            </div>
                 }
+                {
+                    loading ?
+                        <div className="absolute bg-base-300/70  max-h-max w-full top-0 rounded-box flex items-center">
+                            <Loading />
+                        </div>
+                        : ''
+                }
+
             </div>
-            <Pagination maxValue={movieCount} perPage={20}  />
+
+            <Pagination maxValue={movieCount} perPage={20} showJump />
         </>
 
     );
