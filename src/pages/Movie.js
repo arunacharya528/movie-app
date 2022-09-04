@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation } from 'react-router-dom'
+import { Loading } from "../components/Loading";
 import { Thumbnail } from "../services/Home/Thumbnail";
 import { getMovieDetail, getRelatedMovie } from "../services/movie";
 import { MovieDetail } from "../services/movie/MovieDetail";
@@ -17,6 +18,7 @@ export const Movie = () => {
                 setMovieDetail({ loading: false, data: response.data.data.movie })
             })
 
+        setSuggestedMovies({ loading: true, data: [] })
         getRelatedMovie(movieId)
             .then(response => {
                 setSuggestedMovies({ loading: false, data: response.data.data.movies })
@@ -25,12 +27,12 @@ export const Movie = () => {
 
     return (
         <div className="grid lg:grid-cols-2 gap-5">
-            {movieDetail.loading ? "Loading" : <MovieDetail />}
+            {movieDetail.loading ? <Loading/> : <MovieDetail />}
             <div>
                 <div className="text-xl font-bold py-5 text-center">Suggested Movies</div>
                 
                 <div className="grid grid-cols-2 items-start gap-5 ">
-                    {suggestedMovies.loading ? "Loading" :
+                    {suggestedMovies.loading ? <Loading/> :
 
                         suggestedMovies.data.map((movie, index) => <Thumbnail movie={movie} key={index} />)
                     }

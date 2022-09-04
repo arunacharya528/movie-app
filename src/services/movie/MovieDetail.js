@@ -2,14 +2,17 @@ import moment from "moment";
 import { useEffect, useState } from "react";
 import { Link, useLocation } from 'react-router-dom'
 import magnetImage from "../../assets/image/magnet.png"
+import { Loading } from "../../components/Loading";
 import { getMovieDetail } from "./data";
 export const MovieDetail = ({ id, isShort = false }) => {
 
     const location = useLocation();
-    const [movie, setMovie] = useState({ loading: true, data: {} })
+    const initialData = { loading: true, data: {} }
+    const [movie, setMovie] = useState(initialData)
     const movieId = location.pathname.split("/")[2]
     useEffect(() => {
         if (id) {
+            setMovie(initialData)
             getMovieDetail(id)
                 .then(response => {
                     setMovie({ loading: false, data: response.data.data.movie })
@@ -19,6 +22,7 @@ export const MovieDetail = ({ id, isShort = false }) => {
 
     useEffect(() => {
         if (movieId) {
+            setMovie(initialData)
             getMovieDetail(movieId)
                 .then(response => {
                     setMovie({ loading: false, data: response.data.data.movie })
@@ -31,7 +35,7 @@ export const MovieDetail = ({ id, isShort = false }) => {
         <>
 
             {movie.loading ?
-                "Loading"
+                <Loading/>
                 :
                 <div>
                     <img src={movie.data.background_image} className="object-cover h-52 rounded-t-xl w-full" />

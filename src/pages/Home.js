@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { Loading } from "../components/Loading";
+// import { Loading } from "../components/loading";
 import { getMovieList, Thumbnail } from "../services/Home";
 
 export const Home = () => {
@@ -11,17 +13,21 @@ export const Home = () => {
             })
     }, [])
     return (
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-16 p-5 w-full">
+        <>
             {
                 movies.loading ?
-                    "Loading"
+                    <Loading />
                     :
+                    <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-16 p-5 w-full">
 
-                    movies.data.map((movie, index) =>
-                        <Thumbnail key={index} movie={movie} />
-                    )
+                        {movies.data.map((movie, index) =>
+                            <Thumbnail key={index} movie={movie} />
+                        )
+                        }
+                    </div>
+
 
             }
-        </div>
+        </>
     );
 }
