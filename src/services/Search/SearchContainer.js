@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { useContext } from "react";
+import { ErrorText } from "../../components";
 import { Loading } from "../../components/Loading";
 import { getMovieList, Thumbnail } from "../Home";
 import { Pagination } from "./Pagination";
@@ -56,10 +57,7 @@ export const SearchContainer = () => {
                                 )}
                             </div>
                             :
-                            <div className="h-80 flex flex-col justify-center items-center space-x-5">
-                                <span className="text-5xl font-semibold py-5">(･_･)</span>
-                                <span>No movie available</span>
-                            </div>
+                            <ErrorText message="No movie available" />
                 }
                 {
                     loading ?

@@ -45,7 +45,7 @@ export const MovieDetail = () => {
                 );
             case 2:
                 return (
-                    <div className="grid grid-cols-2 gap-5">
+                    <div className="grid lg:grid-cols-2 gap-5">
                         <img src={movie.data.large_screenshot_image1} onClick={() => { window.open(movie.data.large_screenshot_image1, "_blank") }} alt="Screenshot 1" className="rounded-box" />
                         <img src={movie.data.large_screenshot_image2} onClick={() => { window.open(movie.data.large_screenshot_image2, "_blank") }} alt="Screenshot 2" className="rounded-box" />
                         <img src={movie.data.large_screenshot_image3} onClick={() => { window.open(movie.data.large_screenshot_image3, "_blank") }} alt="Screenshot 3" className="rounded-box" />
@@ -65,11 +65,14 @@ export const MovieDetail = () => {
 
                     <div>
                         <div className="relative">
-                            <img src={movie.data.background_image} className="object-cover h-64 rounded-t-box w-full" />
-                            <div className="absolute top-0 w-full h-full bg-primary/70 rounded-t-box grid grid-cols-3 gap-16">
-                                <div className="relative">
-                                </div>
-                                <div className="col-span-2 flex flex-col justify-end space-y-3 py-5">
+                            <img src={movie.data.background_image} className="object-cover h-96 md:h-64 rounded-t-box w-full" />
+                            <div className="absolute top-0 w-full h-full bg-primary/70 rounded-t-box grid md:grid-cols-3 md:gap-16">
+                                <div></div>
+                                <div className="col-span-2 flex flex-col justify-end items-center md:items-start space-y-3 py-5">
+                                    
+                                    <div className="w-40 p-3 md:hidden">
+                                        <img src={movie.data.large_cover_image} className="rounded-box w-auto !h-full" />
+                                    </div>
                                     <Link className="text-4xl font-bold" to={"/movie/" + movie.data.id}>{movie.data.title_english}</Link>
 
                                     <div className="text-lg">
@@ -89,16 +92,16 @@ export const MovieDetail = () => {
                         
                     </div>
 
-                    <div className=" grid grid-cols-3 gap-16">
+                    <div className=" grid md:grid-cols-3 gap-16">
                         <div className="space-y-8">
-                            <div className="absolute top-0 w-96">
+                            <div className="absolute top-0 w-1/4 hidden md:block">
                                 <img src={movie.data.large_cover_image} className="rounded-box w-full m-10" />
                             </div>
                             
                         </div> 
                         <div className="col-span-2 flex flex-col space-y-5">
 
-                            <div className="!mt-10">
+                            <div className="!mt-5">
                                 <div>
                                     <div class="tabs tabs-boxed">
                                         {

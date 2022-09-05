@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation } from 'react-router-dom'
+import { SectionTitle } from "../components";
 import { Loading } from "../components/Loading";
 import { Thumbnail } from "../services/Home/Thumbnail";
 import { getMovieDetail, getRelatedMovie } from "../services/movie";
@@ -30,16 +31,13 @@ export const Movie = () => {
             <div className="">
                 {movieDetail.loading ? <Loading /> : <MovieDetail />}
             </div>
-            <div className="text-xl font-bold py-5 text-center">Suggested Movies</div>
+            <SectionTitle text={"Suggested Movies"} />
 
-            {/* <div className="grid grid-cols-4"> */}
-
-                {suggestedMovies.loading ? <Loading /> :
-                    <div className="grid md:grid-cols-4 items-start gap-5 ">
-                        {suggestedMovies.data.map((movie, index) => <Thumbnail movie={movie} key={index} />)}
-                    </div>
-                }
-            {/* </div> */}
+            {suggestedMovies.loading ? <Loading /> :
+                <div className="grid md:grid-cols-4 items-start gap-5 ">
+                    {suggestedMovies.data.map((movie, index) => <Thumbnail movie={movie} key={index} />)}
+                </div>
+            }
         </>
 
     );

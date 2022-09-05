@@ -4,18 +4,18 @@ import { SearchContext } from "./SearchContext";
 
 export const Pagination = ({ maxValue, perPage, showJump }) => {
     const numberOfTabs = Math.ceil(maxValue / perPage)
-    // const [selectedTab, setSelectedTab] = useState(1)
+    const difference = 3;
     const { page, setPage } = useContext(SearchContext)
 
     const Tab = ({ position, name, inactive }) => {
-        return <button class={"btn btn-md " + (page === position ? 'btn-active' : '') + (inactive ? ' btn-disabled' : '')} onClick={e => setPage(position)}>{name}</button>
+        return <button class={"btn btn-xs sm:btn-sm md:btn-md " + (page === position ? 'btn-active' : '') + (inactive ? ' btn-disabled' : '')} onClick={e => setPage(position)}>{name}</button>
     }
 
     const backwardTabs = () => {
         var tabs = []
         tabs = [...tabs, [<Tab position={1} name="First" />]]
         tabs = [...tabs, [<Tab position={page - 1} name="Previous" inactive={page === 1} />]]
-        for (let i = page - 5; i < page; i++) {
+        for (let i = page - difference+1; i < page; i++) {
             if (i > 0) {
                 tabs = [tabs, ...[<Tab position={i} name={i} />]]
             }
@@ -24,7 +24,7 @@ export const Pagination = ({ maxValue, perPage, showJump }) => {
     }
     const forwardTabs = () => {
         var tabs = []
-        for (let i = page; i < page + 5; i++) {
+        for (let i = page; i < page + difference; i++) {
             if (i <= numberOfTabs) {
                 tabs = [tabs, ...[<Tab position={i} name={i} />]]
             }

@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+import { MainTitle } from "../components";
 import { getMovieList, Thumbnail } from "../services/Home";
 import { SearchBar, SearchContainer, SearchContext, SearchProvider } from "../services/Search";
 
@@ -6,10 +7,9 @@ export const Search = () => {
     return (
         <>
             <SearchProvider>
-                <div className="text-3xl font-bold text-center py-5">Search movies</div>
+                <MainTitle text={"Search Movies"} />
                 <SearchBar />
-                <SearchContainer/>
-
+                <SearchContainer />
             </SearchProvider>
         </>
     );
