@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { useContext } from "react";
+import { useLocation } from "react-router-dom";
 import { ErrorText } from "../../components";
 import { Loading } from "../../components/Loading";
 import { getMovieList, Thumbnail } from "../Home";
@@ -8,15 +9,20 @@ import { Pagination } from "./Pagination";
 import { SearchContext } from "./SearchContext";
 
 export const SearchContainer = () => {
-    const { quality, genre, rating, orderBy, sortBy, query, page } = useContext(SearchContext)
+    const { quality, genre, rating, orderBy, sortBy, query, page, setQuery } = useContext(SearchContext)
     const initialData = { loading: true, data: [] }
     const [movies, setMovies] = useState(initialData);
     const [movieCount, setMovieCount] = useState(0);
     const [loading, setLoading] = useState(true)
 
+    const location = useLocation();
+    const name = location.search.split("=")[1];
+
+
     useEffect(() => {
         // setMovies(initialData)
         setLoading(true)
+
         const determineQuery = () => {
             var queries = [];
             queries = quality ? [...queries, ...[`quality=${quality}`]] : queries
@@ -41,7 +47,17 @@ export const SearchContainer = () => {
                 setLoading(false)
             })
             .catch((error) => console.log(error))
+
     }, [quality, genre, rating, orderBy, sortBy, page, query])
+
+    useEffect(() => {
+        setTimeout(() => {
+            if (name) {
+                setQuery(name)
+            }
+        }, 1000)
+    }, [name])
+
 
     return (
         <>

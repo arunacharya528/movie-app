@@ -1,8 +1,10 @@
+import { useEffect } from "react";
 import { useContext } from "react";
+import { useLocation } from "react-router-dom";
 import { SearchContext } from "./SearchContext";
 
 export const SearchBar = () => {
-    const { setGenre, setOrderBy, setQuality, setRating, setSortBy, setQuery,setPage } = useContext(SearchContext)
+    const { setGenre, setOrderBy, setQuality, setRating, setSortBy, setQuery, setPage, genre, orderBy, quality, query, rating, sortBy } = useContext(SearchContext)
     const clearAll = () => {
         setGenre(undefined)
         setOrderBy(undefined)
@@ -18,7 +20,7 @@ export const SearchBar = () => {
                     <span class="label-text">Name of the movie</span>
                 </label>
                 <div className="flex space-x-5">
-                    <input type="text" placeholder="Movie Title/IMDb Code, Actor Name/IMDb Code, Director Name/IMDb Code" class="input bg-base-300 rounded-full grow" onChange={e => setQuery(e.target.value)} />
+                    <input type="text" placeholder="Movie Title/IMDb Code, Actor Name/IMDb Code, Director Name/IMDb Code" class="input bg-base-300 rounded-full grow" onChange={e => setQuery(e.target.value)} value={query} />
                     <button className="btn rounded-full btn-primary" onClick={clearAll}>Clear all</button>
                 </div>
             </div>
