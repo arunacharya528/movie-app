@@ -1,10 +1,8 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-import { Nav } from './components/Nav';
-import { DrawerContext, DrawerProvider } from './context/DrawerContext';
-import { Home } from './pages/Home';
-import { Movie } from './pages/Movie';
-import { Search } from './pages/Search';
+import { Nav } from './components';
+import { DrawerProvider } from './context';
+import { Home, Movie, Search } from './pages';
 
 function App() {
   return (
