@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { Loading } from "../../components/Loading";
 import { DrawerContext } from "../../context/DrawerContext";
+import { MoviePreview } from "../movie";
 import { MovieDetail } from "../movie/MovieDetail";
 
 export const Thumbnail = ({ movie, size }) => {
@@ -11,7 +12,7 @@ export const Thumbnail = ({ movie, size }) => {
 
     const setSideBarData = () => {
         // setSideBarContent(<></>)
-        setSideBarContent(<MovieDetail id={movie.id} isShort={true} />)
+        setSideBarContent(<MoviePreview id={movie.id} />)
     }
 
     // console.log(movie.id)
