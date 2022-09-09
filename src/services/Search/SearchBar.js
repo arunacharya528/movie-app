@@ -14,14 +14,14 @@ export const SearchBar = () => {
         setPage(1)
     }
     return (
-        <div className="grid md:grid-cols-5 gap-5 p-5 m-5 bg-base-200 rounded-box">
+        <div className="grid md:grid-cols-5 gap-5 p-5 bg-base-200 rounded-box">
             <div className="form-control md:col-span-5 ">
                 <label class="label">
                     <span class="label-text">Name of the movie</span>
                 </label>
                 <div className="flex space-x-5">
                     <input type="text" placeholder="Movie Title/IMDb Code, Actor Name/IMDb Code, Director Name/IMDb Code" class="input bg-base-300 rounded-full grow" onChange={e => setQuery(e.target.value)} value={query} />
-                    <button className="btn rounded-full btn-primary" onClick={clearAll}>Clear all</button>
+                    <button className="btn rounded-full btn-primary hidden md:block" onClick={clearAll}>Clear all</button>
                 </div>
             </div>
             <div class="form-control w-full">
@@ -83,6 +83,8 @@ export const SearchBar = () => {
                     )}
                 </select>
             </div>
+
+            <button className="btn rounded-full btn-primary block md:hidden" onClick={clearAll}>Clear all</button>
 
         </div>
     );

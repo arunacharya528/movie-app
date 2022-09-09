@@ -9,7 +9,7 @@ function App() {
     <BrowserRouter>
       <DrawerProvider>
         <Nav />
-        <div className="container mx-auto">
+        <div className="w-10/12 mx-auto">
           <Routes>
             <Route path="/" exact element={<Home />} />
             <Route path="/movie/:id" exact element={<Movie />} />

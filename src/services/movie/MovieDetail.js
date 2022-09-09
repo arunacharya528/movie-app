@@ -68,12 +68,12 @@ export const MovieDetail = () => {
                             <img src={movie.data.background_image} className="object-cover h-96 md:h-64 rounded-t-box w-full" />
                             <div className="absolute top-0 w-full h-full bg-primary/70 rounded-t-box grid md:grid-cols-3 md:gap-16">
                                 <div></div>
-                                <div className="col-span-2 flex flex-col justify-end items-center md:items-start space-y-3 py-5">
+                                <div className="col-span-2 flex flex-col justify-end items-center md:items-start text-center md:text-left  space-y-3 py-5">
                                     
                                     <div className="w-40 p-3 md:hidden">
                                         <img src={movie.data.large_cover_image} className="rounded-box w-auto !h-full" />
                                     </div>
-                                    <Link className="text-4xl font-bold" to={"/movie/" + movie.data.id}>{movie.data.title_english}</Link>
+                                    <span className="text-4xl font-bold" to={"/movie/" + movie.data.id}>{movie.data.title_english}</span>
 
                                     <div className="text-lg">
                                         <span>{movie.data.year}</span>
